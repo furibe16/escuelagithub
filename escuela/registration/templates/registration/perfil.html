@@ -1,0 +1,62 @@
+{% extends 'base_formularios.html'%}
+ {% load static %}
+{% block cursos_centro %}
+	<div class="container">
+		<div class="row mb-3">
+			<div class="col">
+				<h1>Perfil</h1>
+			</div>
+		</div>
+		{% include 'includes/manejo_errores.html' %}
+
+
+		<div class="row mb-3">
+			<div class="col">
+				<div class="container">
+					<form action="." method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+				<div class="row mb-4">
+					<div class="col-3">Nombre:</div>
+					<div class="col-9">{{form.nombre}}</div>
+				</div>
+				<div class="row mb-4">
+					<div class="col-3">Foto de Perfil:</div>
+					<div class="col-9">{{form.avatar}}</div>
+				</div>
+				<div class="row mb-4">
+					<div class="col-3">Biografia:</div>
+					<div class="col-9">{{form.biografia}}</div>
+				</div>
+				<div class="row mb-4">
+					<div class="col-3">Recibe Mails:</div>
+					<div class="col-9">{{form.recibemails}}</div>
+				</div>
+				<div class="row mb-4">
+					<div class="col-3">Sexo:</div>
+					<div class="col-9">{{form.sexo}}</div>
+				</div>
+				<div class="row mb-4">
+					<div class="col col-3">Fecha de nacimiento:</div>
+					<div class="col col-9">{{form.nacimiento}}</div>
+					{{form.nacimiento.errors}}
+				</div>
+
+				<div class="row mt-2">
+					<input class="col-12 btn btn-primary btn-block" type="submit" value="Actualizar">
+				</div>
+		</form>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col">
+				Desea cambiar su clave?, Puede hacerlo con este
+				<a href="{% url 'registration:cambio_password' %}">enlace</a>
+			</div>
+		</div>
+	</div>
+
+
+{% endblock cursos_centro %}

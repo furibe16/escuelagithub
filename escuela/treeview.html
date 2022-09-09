@@ -1,0 +1,57 @@
+<style>
+	.cabecera {display: none;}
+	.active {display: block;}
+	ul {list-style-type: none;}
+	.item::before {content: "\2610"; color: orange; display: inline-block; margin-right: 16px;}
+	.check-item::before {content: "\2611"; color: dodgerblue;}
+</style>
+</head>
+<body>
+	<ul class="contenido">
+		<li><span class="item">Capitulo 1</span>
+			<ul class="cabecera">
+				<li><span class="item">Tema 11</span>
+					<ul class="cabecera">
+						<li>Detalle 111</li>
+						<li>Detalle 112</li>
+					</ul>
+				</li>
+				<li><span class="item">Tema 12</span>
+					<ul class="cabecera">
+						<li>Detalle 121</li>
+						<li>Detalle 122</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+        <li><span class="item">Capitulo 2</span>
+			<ul class="cabecera">
+				<li><span class="item">Tema 21</span>
+					<ul class="cabecera">
+						<li>Detalle 211</li>
+						<li>Detalle 212</li>
+					</ul>
+				</li>
+				<li><span class="item">Tema 12</span>
+					<ul class="cabecera">
+						<li>Detalle 221</li>
+						<li>Detalle 222</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+<script>
+var items = document.getElementsByClassName("item");
+var i;
+
+for (i = 0; i < items.length; i++) {
+	items[i].addEventListener("click", function() {
+	this.parentElement.querySelector(".cabecera").classList.toggle("active");
+	this.classList.toggle("check-item");
+	});
+}
+</script>
+
+</body>
+</html>

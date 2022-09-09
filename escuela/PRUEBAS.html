@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title of the document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  <body>
+
+                  <div>
+                     <input id='tx1' type="text" placeholder="Datos de busqueda">
+                   </div>
+                   <div>
+                       <a id="lk1" href="">Buscar</a>
+                   </div>
+    <script >
+       $(function(){
+	var enlace = $('#lk1');
+	enlace.on('click',function(){
+		var texto = $('#tx1');
+		enlace.attr('href','http://127.0.0.1:8000/lista_cursos_busqueda?criterio=' + texto.val());
+	});
+}())
+    </script>
+
+  </body>
+</html>

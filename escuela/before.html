@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+	main > div:first-child {display: flex; flex-direction: column;}
+	main > div:first-child div:nth-child(1)::before {content: '\260E';color: orange; display: inline-block; margin-right: 16px;}
+	main > div:first-child div:nth-child(1)::after {content: '\260F'}
+	main > div:first-child div:nth-child(2)::before {content: 'Este es el numero'; color:red;}
+	main > div:first-child div:nth-child(2)::after {content: 'Y es par'; font-size: 20pt;}
+	main > div:first-child div:nth-child(3)::before {content: url(logo.png);}
+	main > div:first-child div:nth-child(3)::after {content: url(logo.png);}
+</style>
+
+</head>
+<body>
+  <main>
+	<div class="">
+		<div class="">
+			Uno
+		</div>
+		<div class="">
+			Dos
+		</div>
+		<div class="">
+			Tres
+		</div>
+	</div>
+</main>
+
+</body>
+</html>

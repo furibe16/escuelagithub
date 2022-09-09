@@ -1,0 +1,19 @@
+
+{% extends 'base_formularios.html' %}
+{% load static %}
+{% block cursos_centro %}
+	<form method="post">{% csrf_token %}
+		<div class="container">
+			<div class="row mb-3">
+				<div class="col">
+					Está seguro de borrar:  "{{ object }}"?
+				</div>
+			</div>
+			<div class="row">
+				<div class="col"><input class="btn btn-primary btn-block" type="submit" value="Confirmar"></div>
+				<div class="col"><a class="btn btn-primary btn-block" href="{% url 'core:en_preparacion' %}">Cancelar</a></div>
+			</div>
+		</div>
+	</form>
+{% endblock %}
+

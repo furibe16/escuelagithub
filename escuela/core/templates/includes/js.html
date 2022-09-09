@@ -1,0 +1,41 @@
+ {% load static %}
+    <script >
+           $(function(){
+            var enlace = $('#lk1');
+            enlace.on('click',function(){
+            var texto = $('#tx1');
+            enlace.attr('href','http://127.0.0.1:8000/visitante/lista_cursos_busqueda?criterio=' + texto.val());
+            });
+        }())
+    </script>
+    <script>
+        var toggler = document.getElementsByClassName("item");
+        var i;
+
+        for (i = 0; i < toggler.length; i++) {
+            toggler[i].addEventListener("click", function() {
+            this.parentElement.querySelector(".cabecera").classList.toggle("active");
+            this.classList.toggle("check-item");
+            });
+        }
+    </script>
+    <script>
+	var coll = document.getElementsByClassName("collapsible");
+	var i;
+
+	for (i = 0; i < coll.length; i++) {
+		coll[i].innerHTML = '(Ver Descripcion ..)';
+		coll[i].addEventListener("click", function() {
+			var content = this.nextElementSibling;
+			if (content.style.display === "block") {
+				this.innerHTML = '(Ver Descripcion ..)'
+				content.style.display = "none";
+			} else {
+				content.style.display = "block";
+				this.innerHTML = '(Ocultar Descripcion ..)'
+			}
+			});
+		}
+    </script>
+
+

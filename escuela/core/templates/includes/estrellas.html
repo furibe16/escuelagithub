@@ -1,0 +1,27 @@
+  {% load static %}
+<div>
+    			{% if curso.calificacion == 0 %}
+    				<img src="{% static 'img/sinestrellas.png' %}">
+    			{% elif curso.calificacion > 0 and curso.calificacion <= 0.5 %}
+    				<img src="{% static 'img/mediaestrella.png' %}">
+    			{% elif curso.calificacion > 0.5 and curso.calificacion <= 1 %}
+    				<img src="{% static 'img/unaestrella.png' %}">
+    			{% elif curso.calificacion > 1 and curso.calificacion <= 0.5 %}
+    				<img src="{% static 'img/unaymediaestrella.png' %}">
+    			{% elif curso.calificacion > 1.5 and curso.calificacion <= 2 %}
+    				<img src="{% static 'img/dosestrellas.png' %}">
+    			{% elif curso.calificacion > 2 and curso.calificacion <= 2.5 %}
+    				<img src="{% static 'img/dosymediaestrella.png' %}">
+    			{% elif curso.calificacion > 2.5 and curso.calificacion <= 3 %}
+    				<img src="{% static 'img/tresestrellas.png' %}">
+    			{% elif curso.calificacion > 3 and curso.calificacion <= 3.5 %}
+    				<img src="{% static 'img/tresymediaestrella.png' %}">
+    			{% elif curso.calificacion > 3.5 and curso.calificacion <= 4 %}
+    				<img src="{% static 'img/cuatroestrellas.png' %}">
+    			{% elif curso.calificacion > 4 and curso.calificacion <= 4.5 %}
+    				<img src="{% static 'img/cuatroymediaestrella.png' %}">
+    			{% elif curso.calificacion > 4.5 and curso.calificacion <= 5 %}
+    				<img src="{% static 'img/cincoestrellas.png' %}">
+    			{% endif %}
+
+    		</div>

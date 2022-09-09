@@ -1,0 +1,28 @@
+{% extends 'base.html'%}
+ {% load static %}
+{% block cursos_izquierda %}
+
+    <!-- Ultimos cursos -->
+	<div class="cursos">
+		<h1>Ultimos cursos</h1>
+		{% for curso in lista %}
+			<!-- Cada ultimo curso -->
+			<div  class="cada_curso" >
+				{% include 'includes/lista_cursos_a.html' %}
+			</div>
+		{% endfor %}
+	</div>
+	<!-- Mejores cursos gratuitos-->
+	<div class="cursos">
+		<h1>Mejores cursos gratuitos</h1>
+		{% for curso in mejores_gratuitos %}
+			<!-- Cada ultimo curso -->
+			<div  class="cada_curso" >
+				{% include 'includes/lista_cursos_a.html' %}
+			</div>
+		{% endfor %}
+	</div>
+
+  {% endblock cursos_izquierda %}
+
+

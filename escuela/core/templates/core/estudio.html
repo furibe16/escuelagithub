@@ -1,0 +1,189 @@
+{% extends 'base_estudio.html' %}
+{% load static %}
+{% block cursos_izquierda %}
+    <style>
+        div.container {
+            height: 500px;
+            overflow: auto;}
+    </style>
+
+    <style>
+
+    .cabecera {display: none;}
+	.active {display: block;}
+	ul {list-style-type: none;}
+	.item::before {content: "\2610";color: black;display: inline-lock;
+                        margin-right: 10px;}
+   .check-item::before {content: "\2611"; color: dodgerblue;}
+    /*.item {
+        cursor: pointer;
+    } */
+    </style>
+    <style>
+        /* Capitulos */
+
+        .nombre_capitulo {font-family: Roboto; font-weight: bold; font-size: 20pt;}
+        .descripcion_capitulo {padding:15px; background-color: #ffeeff55;}
+        .nombre_tema {font-family: Roboto; font-weight: bold; font-size: 16pt; padding-left: 25px;}
+        .descripcion_tema {padding:15px 15px 15px 25px;}
+        .nombre_detalle {font-family: Roboto; font-weight: bold; font-size: 14pt; padding-left: 35px;}
+        .descripcion_detalle {padding:25px 25px 25px 35px; font-family: serif;}
+        .texto_detalle {display: flex;justify-content: center; align-items: center;}
+        .referencia {text-align: center; font-weight: bold;}
+        .imagen_detalle {display: flex;justify-content: center;align-items: center;}
+        .imagen_detalle img {width: 50%; height:50%;}
+        .url_detalle {display: flex;justify-content: center;align-items: center;}
+        .video_detalle {display: flex;justify-content: center;align-items: center;}
+        .audio_detalle {display: flex;justify-content: center;align-items: center;}
+</style>
+    <div class="capitulos container">
+    <div class="row mb-4">
+        <div class="col">
+            Contenido
+        </div>
+    </div>
+    <div class="row">
+        <ul class="contenido">
+             {% for capitulo in capitulos %}
+                <li><span id="capitulo_{{capitulo.id}}" class="item"><a href="#{{capitulo}}">{{capitulo}}</a></span>
+                    <ul class="cabecera">
+                        {% for tema in temas %}
+                           {% if tema.capitulo.id  == capitulo.id %}
+                               <li>
+                                   <span id="tema_{{tema.id}}"  class="item"><a href="#{{tema}}">{{tema}}</a> </span>
+                                       <ul class="cabecera">
+                                           {% for detalle in detalles %}
+                                               {% if detalle.tema.id == tema.id %}
+                                                 <li>
+							                        <span class=”item” id="detalle_{{detalle.id}}"><a href="#{{detalle}}">{{detalle}}</a></span>
+						                        </li>
+                                               {% endif %}
+                                           {% endfor %}
+                                      </ul>
+                                </li>
+                           {% endif %}
+                     {% endfor %}
+                  </ul>
+            </li>
+                        {% endfor %}
+         </ul>
+    </div>
+    </div>
+
+{% endblock %}
+{% block cursos_centro %}
+
+	<div class="container">
+		{% for objeto in contenido %}
+			{% if objeto.1 == 'capitulo' %}
+				<div class="row mb-2">
+                    <div class="col nombre_capitulo">
+                        <h2 id="{{objeto.0.nombre}}">{{objeto.0.nombre}}</h2>
+                    </div>
+				</div>
+				<div class="row mb-2">
+                    <div class="col descripcion_capitulo">
+						{{objeto.0.descripcion|safe}}
+                    </div>
+				</div>
+			{% endif %}
+			{% if objeto.1 == 'tema' %}
+				<div class="row mb-2">
+                    <div class="col nombre_tema">
+					    <h2 id="{{objeto.0.nombre}}">{{objeto.0.nombre}}</h2>
+                    </div>
+				</div>
+				<div class="row mb-2">
+                    <div class="col descripcion_tema">
+					    {{objeto.0.descripcion|safe}}
+                    </div>
+				</div>
+			{% endif %}
+			{% if objeto.1 == 'detalle' %}
+                <div class="row mb-2">
+                    <div class="col nombre_detalle">
+					    <h2 id="{{objeto.0.nombre}}">{{objeto.0.nombre}}</h2>
+                    </div>
+				</div>
+				<div class="row mb-2">
+                    <div class="col descripcion_detalle">
+					    {{objeto.0.descripcion|safe}}
+                    </div>
+				</div>
+                {% if objeto.0.texto != '' %}
+                    <div class="row">
+                        <div class="col texto_detalle">
+                            {{objeto.0.texto|safe}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col referencia">
+                            {{objeto.0.referencia_texto}}
+                        </div>
+                    </div>
+                {% endif %}
+                {% if objeto.0.dirurl != '' %}
+                    <div class="row mb-5">
+                        <div class="col url_detalle">
+                            <a href="{{objeto.0.dirurl}}">{{objeto.0.dirurl}}</a>
+                        </div>
+                    </div>
+		        {% endif %}
+                {% if objeto.0.imagen %}
+                    <div class="row mb-1">
+                        <div class="col imagen_detalle">
+                            <img src="{{objeto.0.imagen.url}}" alt="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col referencia">
+                            {{objeto.0.referencia_imagen}}
+                        </div>
+                    </div>
+                {% endif %}
+                {% if objeto.0.tipoarchivo == 'v' %}
+                    <div class="row mb-2">
+                          <div class="col video_detalle">
+                            <video width="400" controls>
+                                    <source src="{{objeto.0.media.url}}" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+ºº                  <div class="row">
+                        <div class="col referencia">
+                            {{objeto.0.referencia_media}}
+                        </div>
+                    </div>
+                {% endif %}
+                {% if objeto.0.tipoarchivo == 'a' %}
+                    <div class="row">
+                        <div class="col audio_detalle">
+                            <audio width="400" controls>
+                                <source src="{{objeto.0.media.url}}" type="audio/mp3">
+                            </audio>
+                        </div>
+                        <div class="row">
+                            <div class="col referencia">
+                                {{objeto.0.referencia_media}}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if objeto.0.tipoarchivo == 't' %}
+                    <div class="row">
+                        <div class="col texto_detalle">
+                            <a href="../media/visitante/{{objeto.0.nombrearchivo}}">{{objeto.0.nombrearchivo}}</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col referencia">
+                            {{objeto.0.referencia_media}}
+                        </div>
+                    </div>
+                {% endif %}
+			{% endif %}
+		{% endfor %}
+        <a name=”prueba”>esto es una prueba</a>
+	</div>
+{% endblock %}
+
